@@ -1,0 +1,112 @@
+<main class="avatar-container">
+  <div class="container mt-4">
+    <h1>Archivos</h1>
+
+    <div class="input-group">
+      <label class="visually-hidden" for="tipoArchivo">Selecciona un tipo de archivo:</label>
+      <select
+        id="tipoArchivo"
+        [(ngModel)]="tipoArchivoSeleccionado"
+        (change)="onChangeTipoArchivo()"
+        class="form-select text-center"
+        style="background-color: #e1f4fd"
+        aria-label="Selecciona un tipo de archivo"
+      >
+        <option class="option">Seleccione un tipo de archivo</option>
+        <ng-container *ngFor="let categoria of obtenerCategorias()">
+          <optgroup class="desplegable" [label]="categoria">
+            <option
+              *ngFor="let tipoArchivo of categoriasArchivos[categoria]"
+              [ngValue]="tipoArchivo"
+            >
+              {{ getNombreMostrar(tipoArchivo) }}
+            </option>
+          </optgroup>
+        </ng-container>
+      </select>
+    </div>
+
+    <div *ngIf="archivos.length > 0">
+      <h2>Lista de Archivos</h2>
+
+      <div class="row">
+        <div *ngFor="let archivo of archivos" class="col-md-4 mb-4">
+          <div class="card">
+            <img
+              *ngIf="archivo.url && tipoArchivoSeleccionado === 'Image'"
+              [src]="archivo.url"
+              alt="{{ archivo.nombre }}"
+              class="card-img-top"
+            />
+            <img
+              *ngIf="archivo.url && tipoArchivoSeleccionado === 'Pdf'"
+              src="https://th.bing.com/th/id/OIP.prf-wSLLQCzjnWMc90cwuQAAAA?rs=1&pid=ImgDetMain"
+              alt="{{ archivo.tipoArchivo }}"
+              class="card-img-top"
+            />
+            <img
+              *ngIf="
+                archivo.url &&
+                tipoArchivoSeleccionado !== 'Image' &&
+                tipoArchivoSeleccionado !== 'Pdf' &&
+                tipoArchivoSeleccionado !== 'Video' &&
+                tipoArchivoSeleccionado !== 'Audio'
+              "
+              src="https://cdn.icon-icons.com/icons2/977/PNG/512/Download_icon-icons.com_74997.png"
+              alt="{{ archivo.tipoArchivo }}"
+              class="card-img-top"
+            />
+            <video
+              *ngIf="archivo.url && tipoArchivoSeleccionado === 'Video'"
+              [src]="archivo.url"
+              controls
+              width="100%"
+              height="auto"
+              alt=""
+              controls
+              width="100%"
+              height="auto"
+              class="card-img-top"
+            >
+              Tu navegador no soporta el elemento de video.
+            </video>
+            <audio
+              *ngIf="archivo.url && tipoArchivoSeleccionado === 'Audio'"
+              [src]="archivo.url"
+              controls
+              width="100%"
+              height="auto"
+              alt=""
+              controls
+              width="100%"
+              height="auto"
+              class="card-img-top"
+            >
+              Tu navegador no soporta el elemento de video.
+            </audio>
+
+            <div class="card-body sr-only sr-only-focusable">
+              <h5 class="card-title">{{ archivo.nombre }}</h5>
+              <p class="card-text">Tipo: {{ archivo.extension }}</p>
+            </div>
+            <div class="contenedorBotones sr-only sr-only-focusable">
+              <a href="{{ archivo.url }}" class="btn btn-primary"
+                ><i class="bi bi-download"></i>
+              </a>
+              <button
+                class="btn btn-danger btn-borrar"
+                (click)="borrarArchivo(archivo)"
+              >
+                <i class="bi bi-trash3"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="archivos.length === 0" class="mt-4">
+      <p class="alert alert-info sr-only sr-only-focusable">Debe seleccionar un tipo de archivo válido.</p>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,60 @@
+
+<main class="avatar-container" [style.backgroundImage]="'url(' + getAvatarUrl() + ')'">
+  <section id="descripcion">
+    <h2>Bienvenido a tu perfil</h2>
+    <p>Aquí podras consultar tus datos y modificar tu avatar.</p>
+  </section>
+
+  <section>
+
+
+    <img *ngIf="usuarioActual.avatar" [src]="usuarioActual.avatar" alt="Avatar del usuario" style="width: 100px; height: 100px; border-radius: 50%;">
+
+<p></p>
+
+<div class="row mb-3">
+  <div class="col">
+    <div>
+       <div class="form-group text-center" >
+         <select class="form-control text-center" style="background-color: rgba(255, 255, 255, 0.5)" name="avatarSelect" id="avatarSelect" [(ngModel)]="usuarioActual.avatar" >
+           <option disabled  value="" style="font-weight: bold;">Seleccione un avatar</option>
+           <option value="https://cdn-icons-png.flaticon.com/256/456/456141.png">
+            Default
+          </option>         
+           <option value="https://avatarfiles.alphacoders.com/120/120060.jpg">
+             Avatar 1
+           </option>
+           <option value="https://cdn.icon-icons.com/icons2/1576/PNG/512/3561839-emoji-emoticon-silly_107878.png">
+             Avatar 2
+           </option>
+           <option value="https://th.bing.com/th/id/OIP.th8AjwRm63Ooh3XIZg5eAAHaF8?rs=1&pid=ImgDetMain">
+             Avatar 3
+           </option>
+           <option value="https://i.pinimg.com/736x/90/05/80/900580e1df8f3a9858736f21dde029fd.jpg">
+             Avatar 4
+           </option>
+         </select>
+       </div>
+       <p></p>
+       <input class="col-2 form-control" style="background-color: rgba(255, 255, 255, 0.5); text-align: center;    font-weight: bold;" type="text" name="avatarSelect" id="avatarSelect" [(ngModel)]="usuarioActual.avatar" placeholder="URL para Avatar personalizado" />         
+      <p></p>
+       <button type="button" class="btn btn-primary" (click)="updateUsuarios(usuarioActual)">Cambiar Avatar</button>
+      <p></p>
+     </div>
+
+          <p></p>
+
+
+<div class="mb-3">
+  <label class="custom-file-upload" for="avatarInput" style="font-weight: bold" placeholder="Seleccionar fondo de perfil">Seleccionar fondo de perfil</label>
+  <input type="file" style="background-color: rgba(255, 255, 255, 0.5); font-weight: bold;" class="form-control " id="avatarInput btn-primary" (change)="onFileSelected($event)" />
+</div>
+
+
+      </div>
+  </div>
+  </section>
+</main>
+
+
+

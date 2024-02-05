@@ -20,7 +20,7 @@ export class AuthGuardService {
       return true;
     }
 
-    this.router.navigate(['login']);
+    this.router.navigate(['inicio']);
     return false;
   }
 

@@ -1,0 +1,69 @@
+<div class="container mt-4">
+  <h1>Historial</h1>
+
+  <div class="form-group text-center">
+    <label for="fechaSelector">Seleccione fecha y sala:</label>
+    <div class="input-group">
+      <input
+        type="date"
+        id="fechaSelector"
+        class="form-control text-center"
+        [(ngModel)]="fechaInicio"
+        (change)="getHistorialChat()"
+        style="background-color: #e1f4fd"
+      />
+    </div>
+
+    <div class="input-group">
+      <!-- <select
+        class="form-select"
+        id="selectSala"
+        [(ngModel)]="salaSeleccionada"
+        (change)="getHistorialChat()"
+        style="background-color: rgba(255, 238, 215, 0.5)"
+      >
+
+      <option class="tituloSelect">Seleccione sala</option>
+      <optgroup class="desplegable">
+        <option *ngFor="let sala of salas" [value]="sala">
+          {{ getLabelForSala(sala) }}
+        </option>
+      </optgroup>
+      </select> -->
+
+      <select  class="form-select text-center" id="selectSala" [(ngModel)]="salaSeleccionada" (change)="getHistorialChat()"  style="background-color: #e1f4fd">  
+        <option [value]="null" disabled selected>Seleccione una sala</option>
+          <option *ngFor="let sala of salas" [value]="sala">{{ getLabelForSala(sala) }}</option>
+        </select>
+
+
+
+
+    </div>
+
+    <div class="input-group">
+    </div>
+    
+  </div>
+    <button class="btn btn-primary" (click)="descargarHistorial()">
+      Descargar Historial
+    </button>
+
+
+ 
+  <div class="historial-container">
+    <ul class="historial-list">
+      <li *ngFor="let mensaje of historial" class="mensaje-item">
+        [{{ mensaje.fechaMensaje | date : "short" }}] - [{{ mensaje.rol }}] -
+        [{{ mensaje.nombre }}] >>> {{ mensaje.texto }}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- <div *ngFor="let mensaje of historial" data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0">
+
+    <p id="mensaje.nombre">
+      {{mensaje.id}}- {{ mensaje.texto }} - {{ mensaje.fechaMensaje | date: 'short' }} -{{mensaje.rol}} 
+    </p>
+  </div> -->

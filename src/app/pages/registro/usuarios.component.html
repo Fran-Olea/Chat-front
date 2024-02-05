@@ -1,13 +1,4 @@
 <div class="container">
-    <div class="row mt-3">
-      <div class="col-8">
-        <!-- <h1>Registro de usuarios</h1> -->
-      </div>
-      <div class="col-2"> <button type="button" class="btn btn-info text-right" (click)="logout()">Cerrar sesión</button></div>
-      <div class="col-2"> <button type="button" class="btn btn-info text-right" (click)="chat()">Chat</button></div>
-    </div>
-    
-
     <div class="row">
       <div class="col">
         <h2>Agregar nuevo usuario</h2>
@@ -26,9 +17,25 @@
             <label for="password" class="form-label">Password</label>
             <input type="text" class="form-control text-center" id="password" name="password" [(ngModel)]="usuario.password">
             </div>
+
+            <div class="col">
+              <label for="avatar" class="form-label">Avatar</label>
+              <select class="col-4 form-control" type="text"  id="avatar" name="avatar" [(ngModel)]="usuario.avatar">
+              <option value="https://cdn-icons-png.flaticon.com/256/456/456141.png">Avatar por defecto</option>
+            </select>
+          </div>
+
             <div class="col">
               <label for="rol" class="form-label">Rol</label>
-              <input type="text" class="form-control text-center" id="rol" name="rol" [(ngModel)]="usuario.rol">
+              <select class="col-4 form-control" type="text"  id="rol" name="rol" [(ngModel)]="usuario.rol">
+                <option value="Grupo 1">Grupo 1</option>
+                <option value="Grupo 2">Grupo 2</option>
+                <option value="Grupo 3">Grupo 3</option>
+                <option value="Grupo 4">Grupo 4</option>
+                <option value="Grupo 5">Grupo 5</option>
+                <option value="Grupo 6">Grupo 6</option>
+                <option value="admin">admin</option>
+              </select>
               </div>
         </div>
 
@@ -36,16 +43,54 @@
       </form>
     </div>
 
-      <hr class="row mt-4">
+    <!-- <hr class="row mt-4">
+
+
+    <form (submit)="changePassword(usuario)">
+      <div class="row mb-3">
+        <div class="col">
+          <input type="email" class="form-control text-center" id="email" name="email" [(ngModel)]="usuario.email" placeholder="Email">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control text-center" id="password" name="password" [(ngModel)]="usuario.nuevaPassword" placeholder="Nueva Contraseña">
+        </div>
+        <div class="col">
+          <button class="btn btn-primary" type="submit">Cambiar Contraseña</button>
+        </div>
+      </div>
+    </form> -->
+    
+
+    <hr class="row mt-4">
+    <button class="btn btn-danger" (click)="borrarArchivos()">Borrar todos los Archivos</button>
+    <hr class="row mt-4">
+
+    <!-- <p-splitButton label="Save" icon="pi pi-plus" (onClick)="updateUsuarios(usuario)" [model]="items">
+    </p-splitButton> -->
+
+
+    <!-- <p-splitButton label="Save" icon="pi pi-plus" (onClick)="updateUsuarios(usuario)" [model]="items" >Prueba
+      <ng-template pTemplate="menuitem" let-item>
+          <button type="button" pButton (click)="item.command()"></button>
+      </ng-template>
+  </p-splitButton>
+   -->
+  
+
+
+
       <div class="row mt-4">
         <div class="col-md-12">
+
           <table class="table table-striped">
             <thead>
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Email</th>
+                <th scope="col">Avatar</th>
                 <th scope="col">Rol</th>
+                <th scope="col">Nueva password</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -54,17 +99,110 @@
                 <td>{{ usuario.id}}</td>
                 <td><input type="text" class="form-control text-center" [(ngModel)]="usuario.nombre" /></td>
                 <td><input type="text" class="form-control text-center" [(ngModel)]="usuario.email" /></td>
-                <td><input type="text" class="form-control text-center" [(ngModel)]="usuario.rol" /></td>
-
+                <td><input type="text" class="form-control text-center" [(ngModel)]="usuario.avatar" /></td>
+                <td> <select class="col-4 form-control" type="text"  id="rol" name="rol" [(ngModel)]="usuario.rol" style="width: 150px;">
+                  <option value="Grupo 1">Grupo 1</option>
+                  <option value="Grupo 2">Grupo 2</option>
+                  <option value="Grupo 3">Grupo 3</option>
+                  <option value="Grupo 4">Grupo 4</option>
+                  <option value="Grupo 5">Grupo 5</option>
+                  <option value="Grupo 6">Grupo 6</option>
+                  <option value="admin">admin</option>
+                </select> </td>
+                <td><input type="text" class="form-control text-center" [(ngModel)]="usuario.nuevaPassword" /></td>               
                 <td>
-                  <!-- <button class="btn btn-warning mr-2" (click)="updateEquipo(equipo)">Actualizar</button>
-                  <button class="btn btn-danger mr-2" (click)="deleteEquipo(equipo)">Eliminar</button>
-                  <button class="btn btn-danger mr-2" (click)="deleteEquipoJugadores(equipo)">Eliminar equipo y
-                    jugadores</button> -->
+         
+
+                  <!-- <button class="btn btn-warning mr-2" (click)="updateUsuarios(usuario)">Actualizar</button>
+                  <button class="btn btn-danger mr-2" (click)="deleteUsuarios(usuario)">Eliminar</button>   
+                  <button class="btn btn-primary mr-2" (click)="changePassword(usuario)">Cambiar contraseña</button>  -->
+                  
+                  
+
+                  <!-- <div class="dropdown">
+                    <button class="dropbtn btn-primary">Acciones</button>
+                    <div class="dropdown-content">
+                      <a  (click)="updateUsuarios(usuario)">Actualizar</a>
+                      <a  (click)="deleteUsuarios(usuario)">Eliminar</a>
+                      <a  (click)="changePassword(usuario)">Cambiar contraseña</a>
+                    </div>
+                  </div> -->
+
+                  <!-- <div class="select">
+                    <div
+                      class="selected"
+                      data-default="All"
+                      data-one="Actualizar"
+                      data-two="Eliminar"
+                      data-three="Cambiar Contraseña"
+                    > Opciones
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="1em"
+                        viewBox="0 0 512 512"
+                        class="arrow"
+                      >
+                        <path
+                          d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div class="options">
+                    
+                      <div title="option-1">
+                        <input id="option-1" name="option" type="radio" />
+                        <label class="option" (click)="updateUsuarios(usuario)" for="option-1" data-txt="Actualizar"></label>
+                      </div>
+                      <div title="option-2">
+                        <input id="option-2" name="option" type="radio" />
+                        <label class="option" (click)="deleteUsuarios(usuario)" for="option-2" data-txt="Eliminar"></label>
+                      </div>
+                      <div title="option-3">
+                        <input id="option-3" name="option" type="radio" />
+                        <label class="option" (click)="changePassword(usuario)" for="option-3" data-txt="Cambiar contraseña"></label>
+                      </div>
+                    </div>
+                  </div> -->
+                  
+
+
+
+
+                  <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      OPCIONES
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item " (click)="updateUsuarios(usuario)">Actualizar</a></li>
+                      <li><a class="dropdown-item " (click)="deleteUsuarios(usuario)">Eliminar</a></li>
+                      <li><a class="dropdown-item " (click)="changePassword(usuario)">Cambiar contraseña</a></li>
+                    </ul>
+                  </div>
+
+
+                  <!-- <div class="dropdown">
+                    <select (change)="handleAction($event, usuario)">
+                      <option value="" disabled selected>Selecciona una acción</option>
+                      <option value="update">Actualizar</option>
+                      <option value="delete">Eliminar</option>
+                      <option value="changePassword">Cambiar contraseña</option>
+                    </select>
+                  </div> -->
+
+                            
+                  
+                   <!-- <p-splitButton label="Acciones" icon="pi pi-cog" [model]="items"></p-splitButton> -->
+    
+
+
                 </td>
               </tr>
+              
             </tbody>
           </table>
+          
         </div>
       </div>
     </div>
+
+    

@@ -1,0 +1,84 @@
+
+<!-- <div id="contenedor-botones" >
+
+  <nav   [style.width]="sidebarWidth">
+    <ul>
+      <li [routerLink]="['/inicio']" (click)="inicio()">INICIO<span></span><span></span><span></span><span></span></li>
+      <li [routerLink]="['/chat']" (click)="chat()">CHAT<span></span><span></span><span></span><span></span></li>
+      <li [routerLink]="['/registro']" (click)="registrar2()">REGISTRO<span></span><span></span><span></span><span></span></li>
+      <li [routerLink]="['/historial']" (click)="historial()">HISTORIAL<span></span><span></span><span></span><span></span></li>
+    </ul>
+  </nav>
+</div> -->
+
+
+
+
+<!-- <div id="contenedor-botones">
+  <ul [style.width]="sidebarWidth">
+    <li (click)="inicio()">INICIO<span></span><span></span><span></span><span></span></li>
+    <li (click)="chat()">CHAT<span></span><span></span><span></span><span></span></li>
+    <li (click)="registrar2()">REGISTRO<span></span><span></span><span></span><span></span></li>
+    <li (click)="historial()">HISTORIAL<span></span><span></span><span></span><span></span></li>
+    <li (click)="archivos()">ARCHIVOS<span></span><span></span><span></span><span></span></li>
+
+  </ul> -->
+
+  
+
+    <!-- <ol id="lista2" role="list">
+      <h6>Usuarios conectados</h6> -->
+
+      <!-- <li *ngFor="let user of connectedUsers">{{ user.nombre}} {{ getRoomName() }}</li> -->
+      <!-- <li role="listitem" *ngFor="let user of connectedUsers"><span class="bold-text" target="_blank" [routerLink]="['perfil-usuarios', user.id]">{{ user.nombre}}</span> &nbsp; {{ getLabelForSala(user.rol!) }}</li> -->
+      <!-- <li *ngFor="let user of connectedUsers"><span class="bold-text">{{ user.nombre}}</span> &nbsp; {{  label }}</li> -->
+
+
+      <!-- <li>List item</li>
+      <li>
+         <ol>
+            <li>List sub item</li>
+            <li>List sub item</li>
+            <li>List sub Item</li>
+         </ol>
+      </li>
+      <li>List item</li>
+      <li >List item</li> -->
+    <!-- </ol>
+
+
+
+</div> -->
+
+
+<div id="contenedor-botones">
+  <ul [style.width]="sidebarWidth">
+    <li (click)="inicio()">INICIO<span></span><span></span><span></span><span></span></li>
+    <li (click)="chat()">CHAT<span></span><span></span><span></span><span></span></li>
+    <li (click)="registrar2()">REGISTRO<span></span><span></span><span></span><span></span></li>
+    <li (click)="historial()">HISTORIAL<span></span><span></span><span></span><span></span></li>
+    <li (click)="archivos()">ARCHIVOS<span></span><span></span><span></span><span></span></li>
+  </ul>
+
+  <div>
+    <h6>Usuarios conectados</h6>
+    <ol id="lista2" role="list">    
+  
+      <li role="listitem" *ngFor="let user of connectedUsers">
+        <span class="bold-text" target="_blank" [routerLink]="['perfil-usuarios', user.id]">{{ user.nombre}}</span> &nbsp; {{ getLabelForSala(user.rol!) }}
+      </li>
+    </ol>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+.historial-container {
+  max-height: 400px; /* Ajusta el tamaño máximo hacia abajo según tus preferencias */
+  overflow-y: auto; /* Agrega un scroll vertical cuando sea necesario */
+  margin-bottom: 20px; /* Agrega un margen inferior para separar del resto del contenido */
+}
+
+.historial-list {
+  list-style: none; /* Elimina los puntos de la lista por defecto */
+  padding: 0; /* Elimina el padding por defecto de la lista */
+}
+
+.mensaje-item {
+  margin-bottom: 10px; /* Ajusta el margen inferior entre cada elemento de la lista */
+}
+
+/* Puedes agregar más estilos según tus preferencias */
+
+.form-group{
+
+  display: flex;
+  flex-direction: column;
+  gap:  15px;
+}
+
+.desplegable {
+  /* background-color: #eef6ff;  */
+  background-color: #e1f4fd; 
+
+}
+/* .tituloSelect{
+  display: none;
+} */

@@ -14,7 +14,7 @@ import { StorageHelper } from 'src/app/services/localstorage.service';
 export class LoginComponent implements OnInit {
   usuario: IUser = {
     email: '',
-    password: ''
+    password: '',
   };
 
 
@@ -37,5 +37,6 @@ export class LoginComponent implements OnInit {
       complete: () => {}
     });
   }
+  
 
 }

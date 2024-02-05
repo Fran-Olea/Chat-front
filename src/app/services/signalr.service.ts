@@ -10,6 +10,8 @@ import { IMessage } from '../interfaces/message.interface';
 import { ITokenInfo, IUser } from '../interfaces/user.interface';
 import { StorageHelper } from './localstorage.service';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { LoginService } from './login.service';
+import { IMessage2 } from '../interfaces/message2.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -25,13 +27,16 @@ export class SignalRService {
   //   rol:"",
   // };
 
+
   
   urlSignalR = environment.urlAPI;
   hubConnection!: signalR.HubConnection;
   messageSubscription: Subject<IMessage> = new Subject<IMessage>();
   connected = false;
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, 
+    private loginService: LoginService
+    ) {
     this.connect();
   }
 
@@ -52,10 +57,6 @@ export class SignalRService {
           this.connected = true;
           this.listenMessages();
 
-      //         // PRUEBAS Llama al nuevo método para obtener la lista de usuarios conectados
-      //         this.hubConnection.send('GetConnectedUsers');
-      //             // Verifica si se está llamando correctamente
-      // console.log('Método GetConnectedUsers llamado');
         })
         .catch((err) => console.log('Error al iniciar la conexión: ' + err));
     }
@@ -63,30 +64,39 @@ export class SignalRService {
 
 
 
-  connectUser() {
-    const userData: IUser | null = StorageHelper.getItem<IUser>('usuario');
+  // connectUser() {
+  //   const userData: IUser | null = StorageHelper.getItem<IUser>('usuario');
     
-    if (userData) {
+  //   if (userData) {
+  //     const message: IMessage = {
+  //       id: userData.id,
+  //       user: userData.nombre || '',
+  //       text:'',
+  //       // room: 'Conjunta', 
+  //       room: userData.rol || '',
+  //       avatar: '', 
+  //       file: null,
+  //     };
+  //     this.hubConnection.send('ConnectUser', message);
+  //   }
+  // }
+  connectUser() {
+    const currentUser = this.loginService.getUserLogged();
+
+    if (currentUser) {
       const message: IMessage = {
-        user: userData.nombre || '',
-        text:'',
-        // room: 'Conjunta', 
-        room: userData.rol || '',
-        avatar: '', 
-        file: null,
+        id: currentUser.id,
+        user: currentUser.nombre || '',
+        text: '',
+        room: currentUser.rol || '',
+        avatar: '',
+        file: '',
       };
 
-
-
       this.hubConnection.send('ConnectUser', message);
-
- 
     }
   }
- 
-  // changeRoom(room: string) {
-  //   this.hubConnection.send('ChangeRoom', room);
-  // }
+
 
 
   disconnect() {
@@ -115,19 +125,13 @@ export class SignalRService {
   sendMessage(message: IMessage) {
     this.hubConnection.send('SendMessage', message);
     // this.messageSubscription.next(message); 
+    console.log('sendMessage del signalrservice', message)
   }
 
-
-
-  // PRUEBAS
-
-  // listenConnectedUsers() {
-  //   this.hubConnection.on('GetUsers', (users: IUser[]) => {
-  //     console.log('Usuarios conectados:', users);
-  //   });
-  // }
-
-
-
+  sendMessage2(message2: IMessage2) {
+    this.hubConnection.send('SendMessage', message2);
+    // this.messageSubscription.next(message); 
+    console.log('sendMessage del signalrservice', message2)
+  }
 
 }

@@ -1,6 +1,6 @@
 <div class="messageBox">
     <div class="fileUploadWrapper">
-      <label for="file">
+      <label for="file" tabindex="0" (keydown.enter)="pulsadoEnterInputAdjuntarArchivo()">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 337 337">
           <circle
             stroke-width="20"
@@ -23,12 +23,13 @@
             d="M79 167.138H259"
           ></path>
         </svg>
-        <span class="tooltip">Add an image</span>
+        <span class="tooltip">Envíe un archivo</span>  
       </label>
-      <input type="file" id="file" name="file" />
+      <input type="file" id="file" name="file" (change)="onFileSelected($event)" />
+      <!-- <input type="file" id="file" name="file" style="display: none" (change)="handleFileInput($event)" /> -->
     </div>
-    <input required placeholder="Escribe tu mensaje" type="text" id="messageInput" [(ngModel)]="message" />
-    <button id="sendButton" (click)="sendMessage()">
+    <input required placeholder="Escribe tu mensaje" type="text" id="messageInput" [(ngModel)]="message" (keydown.enter)="sendMessage()"/>
+    <button id="sendButton" (click)="sendMessage()" aria-label="Enviar Mensaje">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 664 663">
         <path
           fill="none"

@@ -1,0 +1,41 @@
+<nav class="navbar" style="padding: 0 1rem; box-shadow: 0 0 5px -1px gray;">
+  <a class="navbar-brand" href="javascript:void(0);" (click)="toggleSidebar()">
+    <!-- <img src="https://th.bing.com/th/id/R.879c0a8af25995119d257baf9a03d9b9?rik=HXG4W3WYrvXmuA&riu=http%3a%2f%2fwww.clker.com%2fcliparts%2fw%2fv%2fQ%2fz%2fM%2fx%2fmenu-button-hi.png&ehk=Ohtt4Dx%2fnP4LUvub%2fLE2kSFI%2bAjbwVFsNzUaz3u99Uw%3d&risl=&pid=ImgRaw&r=0"
+      width="50" height="50" class="d-inline-block align-top" alt="Menu"> -->
+      <button class="btnM">
+        <span class="icon">
+            <svg viewBox="0 0 175 80" width="40" height="40">
+                <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+            </svg>
+        </span>
+        <span class="text">MENU</span>
+    </button>
+</a>
+<div class="messages-container">
+  <p-messages [value]="messages"></p-messages>
+</div>
+
+  <!-- <h2 class="centered">Proyecto: Registro, Login y Chat</h2> -->
+  <div class="loader">
+    CHAT EMPRESARIAL
+  </div>
+
+  <div ngbDropdown class="d-inline-block" *ngIf="userEmail; else LoginButton">
+    <button class="btn btn-outline-primary prueba" id="dropdownBasic1" (click)="perfil()" ngbDropdownToggle>{{userEmail}}</button>
+    <button class="btn btn-outline-primary prueba" id="dropdownBasic2" ngbDropdownToggle>{{userRol}}</button>
+
+    <!-- <button class="btn btn-primary" routerLink="/login" (click)="logout()">Salir</button> -->
+    <button type="button" class="btn btn-logout ml-2" (click)="logout()">Salir</button>
+<!-- Agrega este botón en tu componente HTML -->
+<!-- <button type="button" class="btn btn-logout ml-2" (click)="disconnectUser()">Desconectar Usuario</button> -->
+
+    <!-- <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+    </div> -->
+  </div>
+
+  <ng-template #LoginButton>
+    <button class="btn btn-primary" routerLink="/login"> Ingresar</button>
+  </ng-template>
+</nav>

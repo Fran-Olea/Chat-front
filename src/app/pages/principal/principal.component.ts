@@ -17,6 +17,8 @@ export class PrincipalComponent {
     window.location.href = sectionId;
   }
 
+  sidebarOpen: boolean = true;
+
   usuarios: IUser[] = [];
 
   // userData: IUser = {
@@ -39,6 +41,18 @@ export class PrincipalComponent {
   //   this.getUsuarios();
   // }
 
+  toggleSidebar() {
+    const contenedorBotones = document.getElementById("contenedor-botones")!;
+    const contenedorContenido = document.getElementById("contenedor-contenido")!;
+
+    if (contenedorBotones.style.width === "200px") {
+      contenedorBotones.style.width = "0";
+      contenedorContenido.style.marginLeft = "0px";
+    } else {
+      contenedorBotones.style.width = "200px";
+      // contenedorContenido.style.marginLeft = "50px";
+    }
+  }
   getUsuarios() {
     this.usuariosService.getUsuarios().subscribe({
       next: (data) => {
@@ -51,8 +65,6 @@ export class PrincipalComponent {
   }
 
 
-
-
   
   registrar() {
     this.router.navigateByUrl('registro');
@@ -62,7 +74,15 @@ export class PrincipalComponent {
     this.router.navigate(['/login']);
   }
 
+  chat(): void {
+    this.router.navigate(['/chat']);
+  }
+
   registrar2(): void {
     this.router.navigate(['/registro']);
+  }
+
+  historial(): void {
+    this.router.navigate(['/historial']);
   }
 }
